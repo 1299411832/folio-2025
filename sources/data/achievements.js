@@ -1,238 +1,237 @@
 import labData from './lab.js'
 import projectsData from './projects.js'
-
 export default
 [
     [
         'landingLeave',
-        'I’m going on an adventure!',
-        'Get out of the landing area.',
+        '开启冒险！',
+        '离开着陆区域。',
         1
     ],
     [
         'areas',
-        'Traveler',
-        'Vist every area.',
+        '旅行者',
+        '造访全部区域。',
         13,
         true // Unique
     ],
     [
         'projects',
-        'But can you fix the wifi?',
-        'Check every project in the <strong>projects</strong> area.',
+        '但你能修好wifi吗？',
+        '查看<strong>项目</strong>区域内的所有项目。',
         projectsData.length,
         true // Unique
     ],
     [
         'lab',
-        'I\'m a bit of a scientist myself',
-        'Check every project in the <strong>lab</strong> area.',
+        '我也算半个科学家',
+        '查看<strong>迷体·实验室</strong>区域内的所有项目。',
         labData.length,
         true // Unique
     ],
     [
         'cookie',
-        'Wake & bake',
-        'Accept <strong>1</strong> cookies.',
+        '烘焙时光',
+        '接受<strong>1</strong>个Cookie。',
         1
     ],
     [
         'cookie',
-        'Making some dough',
-        'Accept <strong>10</strong> cookies.',
+        '面团大师',
+        '接受<strong>10</strong>个Cookie。',
         10
     ],
     [
         'cookie',
-        'So baked right now',
-        'Accept <strong>100</strong> cookies.',
+        '烘焙上头',
+        '接受<strong>100</strong>个Cookie。',
         100
     ],
     [
         'cookie',
-        'Cookie Clicker',
-        'Accept <strong>1000</strong> cookies.',
+        '饼干点击者',
+        '接受<strong>1000</strong>个Cookie。',
         1000
     ],
     [
         'whisper',
-        'It\'s About Sending A Message',
-        'Post a whisper.',
+        '传递讯息',
+        '发布一条留言。',
         1
     ],
     [
         'sea',
-        'Under the sea',
-        'Go make friend with the fishes.',
+        '海底世界',
+        '去和鱼儿交个朋友。',
         1
     ],
     [
         'upsideDown',
-        'Turtle',
-        'Get upside down.',
+        '龟翻',
+        '让车辆倒置。',
         1
     ],
     [
         'frontFlip',
-        'Teeth first',
-        'Do a front flip and land on your 4 wheels.',
+        '头先落地',
+        '完成前空翻并四轮着地。',
         1
     ],
     [
         'backFlip',
-        'Flip of faith',
-        'Do a back flip and land on your 4 wheels.',
+        '信仰后空翻',
+        '完成后空翻并四轮着地。',
         1
     ],
     [
         'suspensions',
-        'Lowrider',
-        'Use the vehicle suspensions.',
+        '低趴改装',
+        '使用车辆悬挂系统。',
         4
     ],
     [
         'honk',
-        'Honk',
-        'Honk me like one of your french driver.',
+        '鸣笛',
+        '像法国司机一样狂按喇叭。',
         10
     ],
     [
         'explosiveCrates',
-        'Great Explosion Murder God Dynamight',
-        'Blow up every explosive crate.',
+        '爆豪烈怒',
+        '炸毁所有爆炸箱。',
         20,
         true // Unique
     ],
     [
         'goHigh',
-        'Limit the sky',
-        'Reach <strong>15 meters</strong> high.',
+        '天空无界',
+        '到达<strong>15米</strong>高度。',
         15
     ],
     [
         'strike',
-        'F*** it, dude. Let\'s go bowling',
-        'Accomplished a strike.',
+        '干就完了，来打保龄球',
+        '打出一次全中。',
         1
     ],
     [
         'toiletDown',
-        'Do not disturb',
-        'Knock down the latrine.',
+        '请勿打扰',
+        '撞倒厕所。',
         1
     ],
     [
         'circuitFinish',
-        'Participation medal',
-        'Finish a race.',
+        '参与奖章',
+        '完成一场竞速。',
         1
     ],
     [
         'circuitFinishFast',
-        'KA-CHOW!',
-        'Finish a race in less than <strong>30s</strong>.',
+        '咔-轰！',
+        '在<strong>30秒</strong>内完成一场竞速。',
         1
     ],
     [
         'circuitLeaderboard',
-        'Early Bird gets the Worm',
-        'Make it to the leaderboard.',
+        '早起的鸟儿有虫吃',
+        '登上排行榜。',
         1
     ],
     [
         'fullDay',
-        'Don’t you have work to do?',
-        'Spend a full day cycle here in one go.',
+        '你不用上班吗？',
+        '一次性经历完整昼夜循环。',
         1
     ],
     [
         'distanceDriven',
-        'Baby step',
-        'Drive 1km.',
+        '蹒跚起步',
+        '行驶1公里。',
         1
     ],
     [
         'distanceDriven',
-        'Are we there yet?',
-        'Drive 10km.',
+        '我们到了吗？',
+        '行驶10公里。',
         10
     ],
     [
         'distanceDriven',
-        'Honey, I’m home!',
-        'Drive 100km.',
+        '亲爱的，我到家啦！',
+        '行驶100公里。',
         100
     ],
     [
         'sacrifice',
-        'One for the god of Chaos',
-        'Sacrifice yourself into the altar.',
+        '献给混沌之神',
+        '在祭坛献祭自己。',
         1
     ],
     [
         'cataclysm',
-        'Witness me!',
-        'Witness a cataclysm',
+        '见证奇迹！',
+        '见证一次灾变事件。',
         1
     ],
     [
         'weatherSnow',
-        'Do you want to build a snowman?',
-        'Witness snowy weather.',
+        '想堆个雪人吗？',
+        '遇见下雪天气。',
         1
     ],
     [
         'weatherRain',
-        'I’m singing in the rain',
-        'Witness a rainy weather.',
+        '雨中欢唱',
+        '遇见下雨天气。',
         1
     ],
     [
         'lightning',
-        '1.21 Gigawatts!',
-        'Get hit by a lightning.',
+        '121亿瓦特！',
+        '被闪电击中。',
         1
     ],
     [
         'waterfall',
-        'Gamer instinct',
-        'What did you expect? A treasure?',
+        '玩家直觉',
+        '你以为会有宝藏？',
         1
     ],
     [
         'fan',
-        'You’re my only fan',
-        'Spawn a fan.',
+        '你是我唯一的粉丝',
+        '生成一台风扇。',
         1
     ],
     [
         'reset',
-        'Clean your room',
-        'Put back everything as it was.',
+        '收拾房间',
+        '将一切恢复原样。',
         1
     ],
     [
         'statueDown',
-        'Revolution!',
-        'Tear that statue down.',
+        '革命！',
+        '推倒那座雕像。',
         1
     ],
     [
         'konami',
-        'Up up down down…',
-        'You know the rest.',
+        '上上下下……',
+        '剩下的你懂。',
         1
     ],
     [
         'debug',
-        'It\'s not a bug, it\'s a feature',
-        'Access the debug UI.',
+        '这不是bug，是特性',
+        '打开调试界面。',
         1
     ],
     [
         'hacker',
-        'Hacker',
-        'This one can’t be achieved.',
+        '黑客',
+        '该成就无法解锁。',
         1
     ],
 ]
