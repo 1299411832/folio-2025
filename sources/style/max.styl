@@ -1,8 +1,7 @@
-/* ========== 加载文字【无黑遮罩】 ========== */
+/* ========== 开屏文字【无黑遮罩】 ========== */
 .start-splash
   position fixed
   inset 0
-  // ❗删掉 background #050508，不再有黑色遮罩
   z-index 9999
   display flex
   align-items center
@@ -11,7 +10,7 @@
   .splash-inner
     text-align center
     color #fff
-    text-shadow 0 2px 12px rgba(0,0,0,0.85) /* 文字阴影，保证在游戏画面上看得清 */
+    text-shadow 0 2px 12px rgba(0,0,0,0.85)
   .splash-title
     font-size clamp(2rem, 5vw, 4rem)
     letter-spacing 0.2em
@@ -35,6 +34,7 @@
     animation loading 1.6s infinite ease-in-out
   &.fade-out
     opacity 0
+
 @keyframes loading
   0% transform translateX(-100%)
   50% transform translateX(30%)
@@ -83,38 +83,6 @@
     opacity 1
     pointer-events auto
 
-/* ========== 右下角悬浮面板 ========== */
-.float-panel
-  position fixed
-  right 16px
-  bottom 16px
-  z-index 9980
-  display flex
-  flex-direction column
-  gap 8px
-  .float-btn
-    padding 10px 14px
-    border none
-    border-radius 12px
-    background rgba(20,22,30,0.68)
-    backdrop-filter blur(14px)
-    border 1px solid rgba(255,255,255,0.14)
-    color #fff
-    cursor pointer
-    transition all 0.2s ease
-    &:hover
-      background rgba(60,80,140,0.5)
-      box-shadow 0 0 12px rgba(88,166,255,0.35)
-  .visit-info
-    padding 10px 14px
-    border-radius 12px
-    background rgba(20,22,30,0.68)
-    backdrop-filter blur(14px)
-    border 1px solid rgba(255,255,255,0.14)
-    color #fff
-    font-size 0.85rem
-    line-height 1.5
-
 /* ========== 原有全局UI玻璃拟态覆盖（菜单面板） ========== */
 .panel
   background rgba(14,16,24,0.62) !important
@@ -127,12 +95,3 @@
   transition all 0.2s ease !important
   &:hover
     box-shadow 0 0 10px rgba(168,85,247,0.3) !important
-
-/* 移动端适配 */
-@media (max-width:768px)
-  .float-panel
-    right 10px
-    bottom 10px
-  .float-btn
-    padding 12px
-    font-size 0.9rem
