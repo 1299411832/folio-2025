@@ -45,11 +45,11 @@
     </script>
 </head>
 <body>
-<!-- ========== 加载文字（无黑遮罩，浮在游戏画面上层） ========== -->
+<!-- ========== 开屏文字（无黑遮罩，浮在游戏上层） ========== -->
 <div class="start-splash">
   <div class="splash-inner">
     <h1 class="splash-title">迷体星球 · MT小镇</h1>
-    <p class="splash-tip">世界资源加载中...</p>
+    <p class="splash-tip">开始探索</p>
     <div class="splash-progress">
       <div class="splash-bar"></div>
     </div>
@@ -64,22 +64,11 @@
       <p>🚗 WASD 驾驶车辆</p>
       <p>🗺️ M 打开地图</p>
       <p>📝 T 留言</p>
-      <p>⚙️ 右下角打开更多设置</p>
     </div>
     <button class="welcome-close">开始探索</button>
   </div>
 </div>
 
-<!-- ========== 右下角悬浮功能面板 ========== -->
-<div class="float-panel">
-  <button class="float-btn" id="btn-screenshot">📷 截图</button>
-  <button class="float-btn" id="btn-weather">🌤️ 天气</button>
-  <button class="float-btn" id="btn-lang">🌐 简/EN</button>
-  <div class="visit-info">
-    <div>访问次数：<span id="visit-count">0</span></div>
-    <div>本次时长：<span id="time-cost">00:00</span></div>
-  </div>
-</div>
 
 
     
@@ -854,32 +843,11 @@
     <script type="module" src="./index.js"></script>
 
 <script>
-// ========== 全局状态 ==========
 const state = {
-  lang: localStorage.getItem('mt-lang') || 'zh',
-  weatherList: ['clear', 'rain', 'snow'],
-  weatherIdx: 0,
-  startTime: Date.now(),
   splashClosed: false
 }
 
-// ========== 1. 访问统计（localStorage前端存储） ==========
-function initVisitStat() {
-  let count = Number(localStorage.getItem('mt-visit')) || 0
-  count++
-  localStorage.setItem('mt-visit', count)
-  document.getElementById('visit-count').innerText = count
-
-  // 计时
-  setInterval(() => {
-    const sec = Math.floor((Date.now() - state.startTime)/1000)
-    const m = String(Math.floor(sec / 60)).padStart(2,'0')
-    const s = String(sec % 60).padStart(2,'0')
-    document.getElementById('time-cost').innerText = `${m}:${s}`
-  }, 1000)
-}
-
-// ========== 2. 欢迎弹窗：只首次打开显示 ==========
+// ========== 欢迎弹窗：只首次访问显示 ==========
 function initWelcome() {
   const modal = document.querySelector('.welcome-modal')
   if(!localStorage.getItem('mt-welcome')){
@@ -891,7 +859,7 @@ function initWelcome() {
   }
 }
 
-// ========== 3. 点击屏幕关闭开屏文字 ==========
+// ========== 点击屏幕关闭开屏文字 ==========
 function bindSplashClick() {
   const splash = document.querySelector('.start-splash')
   splash.addEventListener('click', () => {
@@ -902,54 +870,8 @@ function bindSplashClick() {
   })
 }
 
-// ========== 4. 截图功能：截取Canvas下载图片 ==========
-document.getElementById('btn-screenshot').onclick = async () => {
-  const canvas = document.querySelector('canvas')
-  const link = document.createElement('a')
-  link.download = `mt-town-${Date.now()}.png`
-  link.href = canvas.toDataURL('image/png')
-  link.click()
-}
-
-// ========== 5. 天气切换（适配你的项目World） ==========
-document.getElementById('btn-weather').onclick = () => {
-  state.weatherIdx = (state.weatherIdx + 1) % state.weatherList.length
-  const targetWeather = state.weatherList[state.weatherIdx]
-  const world = Game.getInstance().world
-  if(targetWeather === 'clear'){
-    world.rain.enabled = false
-    world.snow.enabled = false
-  }else if(targetWeather === 'rain'){
-    world.rain.enabled = true
-    world.snow.enabled = false
-  }else if(targetWeather === 'snow'){
-    world.rain.enabled = false
-    world.snow.enabled = true
-  }
-  alert(`已切换天气：${targetWeather === 'clear' ? '晴天' : targetWeather === 'rain' ? '下雨' : '下雪'}`)
-}
-
-// ========== 6. 中英文切换（你需要准备两套文本对象） ==========
-const texts = {
-  zh: { title:'迷体星球 · MT小镇', tip:'点击屏幕任意位置开始探索', welcome:'欢迎来到 MT小镇' },
-  en: { title:'Miti Planet · MT Town', tip:'Click screen to start', welcome:'Welcome to MT Town' }
-}
-document.getElementById('btn-lang').onclick = () => {
-  state.lang = state.lang === 'zh' ? 'en' : 'zh'
-  localStorage.setItem('mt-lang', state.lang)
-  applyLang()
-}
-function applyLang(){
-  const t = texts[state.lang]
-  document.querySelector('.splash-title').innerText = t.title
-  document.querySelector('.splash-tip').innerText = t.tip
-  document.querySelector('.welcome-card h2').innerText = t.welcome
-}
-
-// ========== 初始化入口 ==========
-initVisitStat()
+// 初始化
 initWelcome()
-applyLang()
 bindSplashClick()
 </script>
 
