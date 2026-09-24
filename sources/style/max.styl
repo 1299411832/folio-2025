@@ -1,8 +1,8 @@
-/* ========== 开场加载遮罩 ========== */
+/* ========== 加载文字【无黑遮罩】 ========== */
 .start-splash
   position fixed
   inset 0
-  background #050508
+  // ❗删掉 background #050508，不再有黑色遮罩
   z-index 9999
   display flex
   align-items center
@@ -11,19 +11,20 @@
   .splash-inner
     text-align center
     color #fff
+    text-shadow 0 2px 12px rgba(0,0,0,0.85) /* 文字阴影，保证在游戏画面上看得清 */
   .splash-title
     font-size clamp(2rem, 5vw, 4rem)
     letter-spacing 0.2em
     margin-bottom 16px
     font-weight 500
   .splash-tip
-    opacity 0.7
+    opacity 0.85
     font-size 1rem
     margin-bottom 32px
   .splash-progress
     width min(320px, 80vw)
     height 4px
-    background rgba(255,255,255,0.15)
+    background rgba(255,255,255,0.2)
     border-radius 4px
     overflow hidden
   .splash-bar
@@ -115,8 +116,6 @@
     line-height 1.5
 
 /* ========== 原有全局UI玻璃拟态覆盖（菜单面板） ========== */
-/* 找到你项目原有面板容器，替换原有样式，这里是通用选择器，按需微调class名称 */
-/* 示例：如果你的菜单面板class是 .panel */
 .panel
   background rgba(14,16,24,0.62) !important
   backdrop-filter blur(16px) !important
