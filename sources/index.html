@@ -45,6 +45,43 @@
     </script>
 </head>
 <body>
+<!-- ========== 开场加载遮罩 ========== -->
+<div class="start-splash">
+  <div class="splash-inner">
+    <h1 class="splash-title">迷体星球 · MT小镇</h1>
+    <p class="splash-tip">世界资源加载中...</p>
+    <div class="splash-progress">
+      <div class="splash-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 首次进入欢迎弹窗 ========== -->
+<div class="welcome-modal">
+  <div class="welcome-card">
+    <h2>欢迎来到 MT小镇</h2>
+    <div class="welcome-desc">
+      <p>🚗 WASD 驾驶车辆</p>
+      <p>🗺️ M 打开地图</p>
+      <p>📝 T 留言</p>
+      <p>⚙️ 右下角打开更多设置</p>
+    </div>
+    <button class="welcome-close">开始探索</button>
+  </div>
+</div>
+
+<!-- ========== 右下角悬浮功能面板 ========== -->
+<div class="float-panel">
+  <button class="float-btn" id="btn-screenshot">📷 截图</button>
+  <button class="float-btn" id="btn-weather">🌤️ 天气</button>
+  <button class="float-btn" id="btn-lang">🌐 简/EN</button>
+  <div class="visit-info">
+    <div>访问次数：<span id="visit-count">0</span></div>
+    <div>本次时长：<span id="time-cost">00:00</span></div>
+  </div>
+</div>
+
+    
     <div class="js-fonts-loader fonts-loader">
         <div class="font nunito" data-font="400 20px Nunito"> </div>
         <div class="font amatic-sc" data-font="700 20px 'Amatic SC'"> </div>
@@ -814,6 +851,95 @@
         </div>
     </div>
     <script type="module" src="./index.js"></script>
+
+    <script>
+// ========== 全局状态 ==========
+const state = {
+  lang: localStorage.getItem('mt-lang') || 'zh',
+  weatherList: ['clear', 'rain', 'snow'],
+  weatherIdx: 0,
+  startTime: Date.now(),
+}
+
+// ========== 1. 访问统计（localStorage前端存储） ==========
+function initVisitStat() {
+  let count = Number(localStorage.getItem('mt-visit')) || 0
+  count++
+  localStorage.setItem('mt-visit', count)
+  document.getElementById('visit-count').innerText = count
+
+  // 计时
+  setInterval(() => {
+    const sec = Math.floor((Date.now() - state.startTime)/1000)
+    const m = String(Math.floor(sec / 60)).padStart(2,'0')
+    const s = String(sec % 60).padStart(2,'0')
+    document.getElementById('time-cost').innerText = `${m}:${s}`
+  }, 1000)
+}
+
+// ========== 2. 欢迎弹窗：只首次打开显示 ==========
+function initWelcome() {
+  const modal = document.querySelector('.welcome-modal')
+  if(!localStorage.getItem('mt-welcome')){
+    modal.classList.add('show')
+  }
+  document.querySelector('.welcome-close').onclick = () => {
+    modal.classList.remove('show')
+    localStorage.setItem('mt-welcome', '1')
+  }
+}
+
+// ========== 3. 开场加载动画：等Three资源加载完成淡出 ==========
+// 【重要】你需要找到项目原有资源加载完成回调，把下面这行放到那里！
+// splashEnd()
+function splashEnd() {
+  const splash = document.querySelector('.start-splash')
+  splash.classList.add('fade-out')
+  setTimeout(()=> splash.style.display = 'none', 1200)
+}
+
+// ========== 4. 截图功能：截取Canvas下载图片 ==========
+document.getElementById('btn-screenshot').onclick = async () => {
+  const canvas = document.querySelector('canvas')
+  const link = document.createElement('a')
+  link.download = `mt-town-${Date.now()}.png`
+  link.href = canvas.toDataURL('image/png')
+  link.click()
+}
+
+// ========== 5. 天气切换（调用项目原有天气系统） ==========
+document.getElementById('btn-weather').onclick = () => {
+  state.weatherIdx = (state.weatherIdx + 1) % state.weatherList.length
+  const targetWeather = state.weatherList[state.weatherIdx]
+  console.log('切换天气：', targetWeather)
+  // 👉 替换这里为你项目内部修改天气的API，示例：
+  // world.setWeather(targetWeather)
+  alert(`已切换天气：${targetWeather === 'clear' ? '晴天' : targetWeather === 'rain' ? '下雨' : '下雪'}`)
+}
+
+// ========== 6. 中英文切换（你需要准备两套文本对象） ==========
+const texts = {
+  zh: { title:'迷体星球 · MT小镇', tip:'世界资源加载中...', welcome:'欢迎来到 MT小镇' },
+  en: { title:'Miti Planet · MT Town', tip:'Loading world resources...', welcome:'Welcome to MT Town' }
+}
+document.getElementById('btn-lang').onclick = () => {
+  state.lang = state.lang === 'zh' ? 'en' : 'zh'
+  localStorage.setItem('mt-lang', state.lang)
+  applyLang()
+}
+function applyLang(){
+  const t = texts[state.lang]
+  document.querySelector('.splash-title').innerText = t.title
+  document.querySelector('.splash-tip').innerText = t.tip
+  document.querySelector('.welcome-card h2').innerText = t.welcome
+}
+
+// ========== 初始化入口 ==========
+initVisitStat()
+initWelcome()
+applyLang()
+</script>
+
 </body>
 
 </html>
