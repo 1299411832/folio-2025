@@ -154,9 +154,7 @@ export default [
         distinctions: [ 'home', 'play', 'work' ],
         images:
         [
-            'citrix-redbull-1.ktx',
-            'citrix-redbull-2.ktx',
-            'citrix-redbull-3.ktx',
+            'max.ktx2',
         ]
     }
 ]
